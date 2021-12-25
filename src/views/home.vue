@@ -1,11 +1,17 @@
 <template>
   <z-view label="Faircorp EMSE App" label-pos="bottom">
     <!-- add time here. -->
+    <small>
+    {{date().toDateString()}}
+    </small>
     <br />
+    You are at {{locatorButtonPressed()}}
     <!-- insert week here -->
+    <!-- {{locatorButtonPressed()}} -->
     <br />
     <br />
     <!-- insert temperature here -->
+
 
     <div slot="extension">
       <z-spot
@@ -83,4 +89,38 @@
   </z-view>
 </template>
 
-<script></script>
+<script>
+import moment from 'moment';
+export default{
+    data(){
+        return{
+            data : 'Today',
+            weather : null
+        }
+    },
+    methods : {
+        date : () => {
+            let date = new Date();
+            return date
+        },
+
+        format_date : (value) => {
+            if(value){
+                return moment(String(value).format('YYYYMMDD'))
+            }
+        },
+        locatorButtonPressed() {
+            navigator.geolocation.getCurrentPosition(
+                position => {
+                    let latitude = position.coords.latitude;
+                    let longitude = position.coords.longitude;
+                },
+                error => {
+                    console.log(error.message)
+                }
+            )
+        }
+
+    },
+}
+</script>
