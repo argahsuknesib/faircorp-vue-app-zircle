@@ -2,17 +2,12 @@
   <z-view label="Faircorp EMSE App" label-pos="bottom">
     <!-- add time here. -->
     <small>
-    {{date().toDateString()}}
+      {{ date().toDateString() }}
     </small>
     <br />
-    You are at {{locatorButtonPressed()}}
-    <!-- insert week here -->
-    <!-- {{locatorButtonPressed()}} -->
     <br />
     <br />
-    <!-- insert temperature here -->
-
-
+    <p>Kushagra's Faircorp App!</p>
     <div slot="extension">
       <z-spot
         style="
@@ -29,6 +24,18 @@
         ><br />
         <span style="color: var(--accent-text-color)">15</span>
       </z-spot>
+
+      <z-spot
+        :angle="-80"
+        size="m"
+        :distance="120"
+        label="Location"
+        label-pos="top"
+        to-view="locations"
+      >
+        <i class="fas fa-globe"></i>
+      </z-spot>
+
       <!-- heater -->
       <z-spot
         :angle="-30"
@@ -36,7 +43,17 @@
         :distance="120"
         label="Heater"
         label-pos="top"
-        to-view="Heater"
+        to-view="heaters"
+      >
+        <i class="fas fa-fire"></i>
+      </z-spot>
+            <z-spot
+        :angle="-40"
+        size="m"
+        :distance="120"
+        label="HeaterTable"
+        label-pos="top"
+        to-view="heatertable"
       >
         <i class="fas fa-fire"></i>
       </z-spot>
@@ -48,7 +65,7 @@
         :distance="120"
         label="Room"
         label-pos="right"
-        to-view="Room"
+        to-view="rooms"
       >
         <i class="fas fa-bed"></i>
       </z-spot>
@@ -59,7 +76,7 @@
         :distance="120"
         label="Window"
         label-pos="right"
-        to-view="Window"
+        to-view="windows"
       >
         <i class="fas fa-window-maximize"></i>
       </z-spot>
@@ -71,7 +88,7 @@
         :distance="120"
         label="Building"
         label-pos="left"
-        to-view="Building"
+        to-view="buildings"
       >
         <i class="fas fa-building"></i>
       </z-spot>
@@ -81,7 +98,7 @@
         :distance="120"
         size="m"
         label="Hello"
-        to-view="Hello"
+        to-view="hello"
       >
         <i class="far fa-smile-beam"></i>
       </z-spot>
@@ -90,37 +107,25 @@
 </template>
 
 <script>
-import moment from 'moment';
-export default{
-    data(){
-        return{
-            data : 'Today',
-            weather : null
-        }
+import moment from "moment";
+export default {
+  data() {
+    return {
+      data: "Today",
+      weather: null,
+    };
+  },
+  methods: {
+    date: () => {
+      let date = new Date();
+      return date;
     },
-    methods : {
-        date : () => {
-            let date = new Date();
-            return date
-        },
 
-        format_date : (value) => {
-            if(value){
-                return moment(String(value).format('YYYYMMDD'))
-            }
-        },
-        locatorButtonPressed() {
-            navigator.geolocation.getCurrentPosition(
-                position => {
-                    let latitude = position.coords.latitude;
-                    let longitude = position.coords.longitude;
-                },
-                error => {
-                    console.log(error.message)
-                }
-            )
-        }
-
+    format_date: (value) => {
+      if (value) {
+        return moment(String(value).format("YYYYMMDD"));
+      }
     },
-}
+  },
+};
 </script>
