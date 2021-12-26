@@ -2,10 +2,13 @@
   <z-canvas :views='$options.components'></z-canvas>
 </template>
 <script>
+import Vue from 'vue';
+import Router from 'vue-router';
+Vue.use(Router)
+const router = new Router();
 export default {
 /* eslint-disable vue/no-unused-components */
   components: {
-    home : () => import('./views/home.vue'),
     locations : () => import('./views/locations.vue'),
     heaters : () => import('./views/heaters.vue'),
     buildings : () => import('./views/buildings.vue'),
@@ -13,9 +16,12 @@ export default {
     rooms : () => import('./views/rooms.vue'),
     windows : () => import('./views/windows.vue'),
     heatertable : () => import('./views/heatertable.vue')
-
   },
+  router,
   mounted () {
+    this.$$zircle.config({
+      router
+    })
     this.$zircle.setView('home')
   }
 }
