@@ -1,24 +1,3 @@
-# faircorp-vue-app
+# faircorp-vue-app-zircle
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Not complete, as there was more data to load than zircle-ui could handle.
